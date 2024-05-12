@@ -63,16 +63,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    std::cout << argv[1] << std::endl;
-
-    if (std::filesystem::is_regular_file(argv[1])) {
-        fix(std::filesystem::path(argv[1]));
-        return 0;
-    }
-
-    for (std::filesystem::directory_entry file : std::filesystem::directory_iterator(argv[1])) {
-        recursive_fix(file.path());
-    }
+    recursive_fix(argv[1]);
 
     return 0;
 }
